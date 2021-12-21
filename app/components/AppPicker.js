@@ -17,7 +17,9 @@ import PickerItem from './PickerItem';
 export default function AppPicker({
 	icon,
 	items,
+	numberOfColumns = 1,
 	onSelectItem,
+	PickerItemComponent = PickerItem,
 	selectedItem,
 	placeholder,
 }) {
@@ -34,9 +36,12 @@ export default function AppPicker({
 							style={styles.icon}
 						/>
 					)}
-					<AppText style={styles.text}>
-						{selectedItem ? selectedItem : placeholder}
-					</AppText>
+					{selectedItem ? (
+						<AppText style={styles.text}>{selectedItem.label}</AppText>
+					) : (
+						<AppText style={styles.placeholder}>{placeholder}</AppText>
+					)}
+
 					<MaterialCommunityIcons
 						name='chevron-down'
 						size={20}
@@ -50,8 +55,10 @@ export default function AppPicker({
 					<FlatList
 						data={items}
 						keyExtractor={(item) => item.value.toString()}
+						numColumns={numberOfColumns}
 						renderItem={({ item }) => (
-							<PickerItem
+							<PickerItemComponent
+								item={item}
 								label={item.label}
 								onPress={() => {
 									setModalVisible(false);
@@ -77,6 +84,10 @@ const styles = StyleSheet.create({
 	},
 	icon: {
 		marginRight: 10,
+	},
+	placeholder: {
+		color: defaultStyles.colors.medium,
+		flex: 1,
 	},
 	text: {
 		flex: 1,
