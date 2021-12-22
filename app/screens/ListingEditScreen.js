@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
+import useLocation from '../hooks/useLocation';
 
 import {
 	Form,
@@ -20,6 +21,8 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function ListingEditScreen() {
+	const [location, error] = useLocation();
+
 	return (
 		<Screen style={styles.container}>
 			<Form

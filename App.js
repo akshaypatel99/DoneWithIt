@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import {
 	StyleSheet,
 	Text,
@@ -7,7 +6,10 @@ import {
 	Button,
 	Image,
 } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import WelcomeScreen from './app/screens/WelcomeScreen';
 import ViewImageScreen from './app/screens/ViewImageScreen';
@@ -18,12 +20,17 @@ import ListingsScreen from './app/screens/ListingsScreen';
 import LoginScreen from './app/screens/LoginScreen';
 import RegisterScreen from './app/screens/RegisterScreen';
 import ListingEditScreen from './app/screens/ListingEditScreen';
-import ImageInput from './app/components/ImageInput';
+import AppNavigator from './app/navigation/AppNavigator';
 
-import Screen from './app/components/Screen';
+import colors from './app/config/colors';
+import navigationTheme from './app/navigation/navigationTheme';
 
 export default function App() {
-	return <ListingEditScreen />;
+	return (
+		<NavigationContainer theme={navigationTheme}>
+			<AppNavigator />
+		</NavigationContainer>
+	);
 }
 
 const styles = StyleSheet.create({});
