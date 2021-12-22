@@ -3,7 +3,7 @@ import { useFormikContext } from 'formik';
 import AppPicker from '../AppPicker';
 import ErrorMessage from './ErrorMessage';
 
-export default function AppFormPicker({
+export default function FormPicker({
 	items,
 	name,
 	numberOfColumns = 1,
